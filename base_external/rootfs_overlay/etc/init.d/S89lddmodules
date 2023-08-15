@@ -15,7 +15,7 @@ scull_load()
 
     # invoke insmod with all arguments we got
     # and use a pathname, as insmod doesn't look in . by default
-    insmod ./$module.ko $* || exit 1
+    insmod /lib/modules/$(uname -r)/extra/$module.ko $* || exit 1
 
     # retrieve major number
     major=$(awk "\$2==\"$module\" {print \$1}" /proc/devices)
@@ -97,7 +97,7 @@ faulty_load()
     fi
 
     echo "Load our module, exit on failure"
-    insmod ./$module.ko $* || exit 1
+    insmod /lib/modules/$(uname -r)/extra/$module.ko $* || exit 1
     echo "Get the major number (allocated with allocate_chrdev_region) from /proc/devices"
     major=$(awk "\$2==\"$module\" {print \$1}" /proc/devices)
     if [ ! -z ${major} ]; then
@@ -146,4 +146,6 @@ case "$1" in
         startup;;
     stop)
         stop;;
+    *)
+        startup;;
 esac

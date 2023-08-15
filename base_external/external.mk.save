@@ -1,2 +1,0 @@
-include $(sort $(wildcard $(BR2_EXTERNAL_project_base_PATH)/package/*/*.mk))
-https://github.com/cu-ecen-aeld/assignment-5-geoffreyjensen6/commit/a726c86c48e2e2141a9c6058be4f13e32d63af4b
